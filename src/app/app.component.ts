@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MadlibsService } from './madlibs.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(public ml: MadlibsService) {}
 }

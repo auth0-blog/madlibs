@@ -1,0 +1,18 @@
+<div class="timer progress">
+  <div
+    class="progress-bar progress-bar-striped"
+    role="progressbar"
+    [ngClass]="{
+      'progress-bar-animated': counter < 5,
+      'bg-success': counter < 3,
+      'bg-info': counter >= 3 && counter < 4,
+      'bg-warning': counter === 4,
+      'bg-danger': counter > 4}"
+    [style.width]="width"
+    [attr.aria-valuenow]="timer"
+    aria-valuemin="0"
+    aria-valuemax="100">
+    <span *ngIf="counter < 5">{{counter}}</span>
+    <span *ngIf="counter === 5">Time's Up!</span>
+  </div>
+</div>
