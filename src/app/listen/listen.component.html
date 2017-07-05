@@ -39,7 +39,7 @@
           type="text"
           name="noun-{{i}}"
           class="form-control"
-          [(ngModel)]="nouns[i]"
+          [(ngModel)]="nouns[i].word"
           required>
       </div>
     </div>
@@ -50,7 +50,7 @@
           type="text"
           name="verb-{{i}}"
           class="form-control"
-          [(ngModel)]="verbs[i]"
+          [(ngModel)]="verbs[i].word"
           required>
       </div>
     </div>
@@ -61,7 +61,7 @@
           type="text"
           name="adj-{{i}}"
           class="form-control"
-          [(ngModel)]="adjs[i]"
+          [(ngModel)]="adjs[i].word"
           required>
       </div>
     </div>

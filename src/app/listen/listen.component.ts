@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { MadlibsService } from './../madlibs.service';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -8,14 +9,15 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: string[] = [null, null, null];
-  verbs: string[] = [null, null, null];
-  adjs: string[] = [null, null, null];
+  nouns: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  verbs: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  adjs: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
 
   constructor(
+    private ml: MadlibsService,
     public speech: SpeechService,
     private zone: NgZone) { }
 
@@ -69,9 +71,9 @@ export class ListenComponent implements OnInit, OnDestroy {
   _updateWords(arr, newWord) {
     let added = false;
     return arr.map((item, i) => {
-      if (!item && !added) {
+      if (!item.word && !added) {
         added = true;
-        return newWord;
+        return {id: item.id, word: newWord};
       } else {
         return item;
       }
@@ -79,7 +81,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   }
 
   trackWords(index, word) {
-    return word ? index : undefined;
+    return word ? word.id : undefined;
   }
 
   done() {
