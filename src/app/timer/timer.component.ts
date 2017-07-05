@@ -25,7 +25,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   private _setupTimer() {
-    // 10 seconds (50ms * 200 = 10s)
+    // 5 seconds (50ms * 200 = 5s)
     this.timer$ = Observable
       .timer(0, 50)
       .timeInterval()
@@ -34,11 +34,12 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   private _setupGo() {
-    this.goSub = this.ml.go$.subscribe(
-      (val) => {
-        this._startTimer();
-      }
-    );
+    this.goSub = this.ml.go$
+      .subscribe(
+        (val) => {
+          this._startTimer();
+        }
+      );
   }
 
   private _startTimer() {
@@ -46,23 +47,24 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.timerSub.unsubscribe();
     }
     this.counter = 0;
-    this.timerSub = this.timer$.subscribe(
-      t => {
-        this.timer = (t / 2) + .5;
-        this.width = this.timer + '%';
-        if (this.timer % 1 === 0 && this.timer % 20 === 0) {
-          this.counter++;
+    this.timerSub = this.timer$
+      .subscribe(
+        (t) => {
+          this.timer = (t / 2) + .5;
+          this.width = this.timer + '%';
+          if (this.timer % 1 === 0 && this.timer % 20 === 0) {
+            this.counter++;
+          }
+        },
+        (err) => {
+          console.warn('Timer error:', err);
+        },
+        () => {
+          this.timer = 100;
+          this.width = '100%';
+          this.timeUp.emit();
         }
-      },
-      err => {
-        console.warn('Timer error:', err);
-      },
-      () => {
-        this.timer = 100;
-        this.width = '100%';
-        this.timeUp.emit();
-      }
-    );
+      );
   }
 
   ngOnDestroy() {

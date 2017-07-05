@@ -1,0 +1,38 @@
+<div class="alert alert-info mt-3">
+  <p>To fill in your madlib words using speech recognition, click the <em>"Listen"</em> button below. If prompted, grant the app permission to use your device's microphone. Then say a <em>type</em> of word followed by the word itself.</p>
+
+  <p>Here are some examples:</p>
+
+  <ul>
+    <li><em>"noun <strong>cat</strong>"</em></li>
+    <li><em>"verb <strong>leaping</strong>"</em></li>
+    <li><em>"adjective <strong>flashy</strong>"</em></li>
+  </ul>
+
+  <p>Wait for the app to assess your command and fill in the appropriate madlib field. Then say another command to fill another field. Repeat until all fields are filled in. You may also <em>"Stop"</em> listening at any time and fill in the fields manually.</p>
+
+  <div class="row">
+    <div class="col btn-group">
+      <button
+        class="btn btn-primary col-6"
+        (click)="speech.startListening()"
+        [disabled]="speech.listening">
+          <img class="icon" src="/assets/images/mic-on.png">Listen
+      </button>
+
+      <button
+        class="btn btn-danger col-6"
+        (click)="speech.abort()"
+        [disabled]="!speech.listening">
+          <img class="icon" src="/assets/images/mic-off.png">Stop
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4">
+    <ul>
+      <li *ngFor="let noun of nouns">{{noun}}</li>
+    </ul>
+  </div>

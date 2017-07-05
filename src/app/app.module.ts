@@ -1,22 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MadlibsService } from './madlibs.service';
+import { SpeechService } from './speech.service';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TimerComponent } from './timer/timer.component';
+import { ListenComponent } from './listen/listen.component';
+import { MadlibComponent } from './madlib/madlib.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProgressBarComponent,
-    TimerComponent
+    TimerComponent,
+    ListenComponent,
+    MadlibComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
-    MadlibsService
+    MadlibsService,
+    SpeechService
   ],
   bootstrap: [AppComponent]
 })

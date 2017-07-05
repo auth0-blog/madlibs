@@ -11,7 +11,11 @@
     <div class="col">
       <button
         (click)="ml.go()"
-        class="btn btn-success btn-block">Go</button>
+        class="btn btn-success btn-block mt-2 mb-2">Go</button>
     </div>
+  </div>
+
+  <div *ngIf="speech.speechSupported">
+    <app-listen></app-listen>
   </div>
 </div>
