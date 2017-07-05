@@ -1,11 +1,11 @@
 <div class="alert alert-info mt-3">
-  <p>To fill in your madlib words using speech recognition, click the <em>"Listen"</em> button below. If prompted, grant the app permission to use your device's microphone. Then say a <em>type</em> of word followed by the word itself.</p>
+  <p>To fill in your madlib words using speech recognition, click the <em>"Listen"</em> button below. If prompted, grant the app permission to use your device's microphone. Then say a <em>type</em> of word (also known as "parts of speech") followed by the word itself.</p>
 
   <p>Here are some examples:</p>
 
   <ul>
     <li><em>"noun <strong>cat</strong>"</em></li>
-    <li><em>"verb <strong>leaping</strong>"</em></li>
+    <li><em>"verb <strong>jumping</strong>"</em></li>
     <li><em>"adjective <strong>flashy</strong>"</em></li>
   </ul>
 
@@ -30,9 +30,49 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-4">
-    <ul>
-      <li *ngFor="let noun of nouns">{{noun}}</li>
-    </ul>
+<form (submit)="done()" #wordsForm="ngForm">
+  <div class="row">
+    <div class="col-4">
+      <h3>Nouns</h3>
+      <div *ngFor="let noun of nouns; let i = index; trackBy: trackWords">
+        <input
+          type="text"
+          name="noun-{{i}}"
+          class="form-control"
+          [(ngModel)]="nouns[i]"
+          required>
+      </div>
+    </div>
+    <div class="col-4">
+      <h3>Verbs</h3>
+      <div *ngFor="let verb of verbs; let i = index; trackBy: trackWords">
+        <input
+          type="text"
+          name="verb-{{i}}"
+          class="form-control"
+          [(ngModel)]="verbs[i]"
+          required>
+      </div>
+    </div>
+    <div class="col-4">
+      <h3>Adjectives</h3>
+      <div *ngFor="let adj of adjs; let i = index; trackBy: trackWords">
+        <input
+          type="text"
+          name="adj-{{i}}"
+          class="form-control"
+          [(ngModel)]="adjs[i]"
+          required>
+      </div>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col mt-3">
+      <button
+        class="btn btn-block btn-lg btn-success"
+        (click)="done()"
+        [disabled]="!wordsForm.form.valid">Done</button>
+    </div>
+  </div>
+</form>

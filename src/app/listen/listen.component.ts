@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: string[] = [];
-  verbs: string[] = [];
-  adjs: string[] = [];
+  nouns: string[] = [null, null, null];
+  verbs: string[] = [null, null, null];
+  adjs: string[] = [null, null, null];
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
@@ -20,8 +20,8 @@ export class ListenComponent implements OnInit, OnDestroy {
     private zone: NgZone) { }
 
   ngOnInit() {
-    // @TODO: this entire component should only be initialized if browser supports speech recognition
     this.speech.init();
+
     this._listenNouns();
     this._listenVerbs();
     this._listenAdj();
@@ -34,8 +34,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (noun) => {
           this.zone.run(() => {
-            this.nouns = [...this.nouns, ...[noun]];
-            console.log(this.nouns);
+            this.nouns = this._updateWords(this.nouns, noun);
           });
         }
       );
@@ -48,8 +47,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (verb) => {
           this.zone.run(() => {
-            // this.verb = verb;
-            // alert('verb:' + this.verb);
+            this.verbs = this._updateWords(this.verbs, verb);
           });
         }
       );
@@ -62,11 +60,30 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (adj) => {
           this.zone.run(() => {
-            // this.adj = adj;
-            // alert('adjective:' + this.adj);
+            this.adjs = this._updateWords(this.adjs, adj);
           });
         }
       );
+  }
+
+  _updateWords(arr, newWord) {
+    let added = false;
+    return arr.map((item, i) => {
+      if (!item && !added) {
+        added = true;
+        return newWord;
+      } else {
+        return item;
+      }
+    });
+  }
+
+  trackWords(index, word) {
+    return word ? index : undefined;
+  }
+
+  done() {
+    console.log(this.nouns, this.verbs, this.adjs);
   }
 
   ngOnDestroy() {
