@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Word } from './../word.model';
 import { MadlibsService } from './../madlibs.service';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,9 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  verbs: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  adjs: any[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  nouns: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  verbs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  adjs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
@@ -78,14 +79,6 @@ export class ListenComponent implements OnInit, OnDestroy {
         return item;
       }
     });
-  }
-
-  trackWords(index, word) {
-    return word ? word.id : undefined;
-  }
-
-  done() {
-    console.log(this.nouns, this.verbs, this.adjs);
   }
 
   ngOnDestroy() {

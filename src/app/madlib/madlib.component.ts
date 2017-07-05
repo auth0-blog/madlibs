@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-madlib',
@@ -6,8 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./madlib.component.scss']
 })
 export class MadlibComponent implements OnInit {
-  @Input() words: string[];
-
   constructor() { }
 
   ngOnInit() {

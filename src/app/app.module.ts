@@ -9,6 +9,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TimerComponent } from './timer/timer.component';
 import { ListenComponent } from './listen/listen.component';
 import { MadlibComponent } from './madlib/madlib.component';
+import { WordsFormComponent } from './words-form/words-form.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MadlibComponent } from './madlib/madlib.component';
     ProgressBarComponent,
     TimerComponent,
     ListenComponent,
-    MadlibComponent
+    MadlibComponent,
+    WordsFormComponent,
+    KeyboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,21 @@
 <div class="container">
   <h1 class="text-center">Madlibs</h1>
   <!--<app-progress-bar [progress]="progress"></app-progress-bar>-->
-  <div class="row">
+  <!--<div class="row">
     <div class="col">
       <app-timer></app-timer>
     </div>
-  </div>
+  </div>-->
 
-  <div class="row">
+  <!--<div class="row">
     <div class="col">
       <button
         (click)="ml.go()"
         class="btn btn-success btn-block mt-2 mb-2">Go</button>
     </div>
-  </div>
+  </div>-->
 
-  <div *ngIf="speech.speechSupported">
-    <app-listen></app-listen>
-  </div>
+  <app-listen *ngIf="speech.speechSupported"></app-listen>
+  <app-keyboard *ngIf="!speech.speechSupported"></app-keyboard>
+
 </div>
