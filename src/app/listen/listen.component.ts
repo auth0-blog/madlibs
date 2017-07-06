@@ -16,6 +16,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
+  errorsSub: Subscription;
 
   constructor(
     private ml: MadlibsService,
@@ -28,6 +29,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     this._listenNouns();
     this._listenVerbs();
     this._listenAdj();
+    this._listenErrors();
   }
 
   private _listenNouns() {
@@ -65,6 +67,15 @@ export class ListenComponent implements OnInit, OnDestroy {
           this.zone.run(() => {
             this.adjs = this._updateWords(this.adjs, adj);
           });
+        }
+      );
+  }
+
+  private _listenErrors() {
+    this.errorsSub = this.speech.errors$
+      .subscribe(
+        (err) => {
+          console.error(err);
         }
       );
   }

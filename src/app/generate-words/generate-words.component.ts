@@ -17,14 +17,15 @@ export class GenerateWordsComponent implements OnInit, OnDestroy {
   }
 
   fetchWords() {
-    this.wordsSub = this.ml.getWords$().subscribe(
-      (res) => {
-        this.fetchedWords.emit(res);
-      },
-      (err) => {
-        console.warn(err);
-      }
-    );
+    this.wordsSub = this.ml.getWords$()
+      .subscribe(
+        (res) => {
+          this.fetchedWords.emit(res);
+        },
+        (err) => {
+          console.warn(err);
+        }
+      );
   }
 
   ngOnDestroy() {
