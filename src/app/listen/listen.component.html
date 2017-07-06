@@ -7,7 +7,7 @@
     <li>Click the <em>"Listen"</em> button below.</li>
     <li>If prompted, grant the app permission to use your device's microphone.</li>
     <li>
-      Clearly say a <em>type</em> of word (also known as "parts of speech") followed by <em>one</em> word to fill in the form below. Here are some examples:
+      Clearly say a <em>type</em> of word (also known as a "part of speech") followed by <em>one</em> word to fill in the form below. Here are some examples:
       <ul>
         <li><em>"noun <strong>cat</strong>"</em> (person, place, or thing)</li>
         <li><em>"verb <strong>jumping</strong>"</em> (action, present tense), <em>"verb <strong>ran</strong>"</em> (action, past tense)</li>
@@ -37,6 +37,8 @@
       </button>
     </div>
   </div>
+
+  <app-generate-words (fetchedWords)="onFetchedWords($event)"></app-generate-words>
 </div>
 
 <app-words-form

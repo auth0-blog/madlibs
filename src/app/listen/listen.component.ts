@@ -69,7 +69,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       );
   }
 
-  _updateWords(arr, newWord) {
+  private _updateWords(arr, newWord) {
     let added = false;
     return arr.map((item, i) => {
       if (!item.word && !added) {
@@ -79,6 +79,12 @@ export class ListenComponent implements OnInit, OnDestroy {
         return item;
       }
     });
+  }
+
+  onFetchedWords(e) {
+    this.nouns = e.nouns;
+    this.verbs = e.verbs;
+    this.adjs = e.adjs;
   }
 
   ngOnDestroy() {
