@@ -9,7 +9,8 @@
     <li><em>"adjective <strong>flashy</strong>"</em> (describing word)</li>
   </ul>
 
-  <app-generate-words></app-generate-words>
+  <app-generate-words
+    (fetchedWords)="onFetchedWords($event)"></app-generate-words>
 </div>
 
 <app-words-form

@@ -16,4 +16,10 @@ export class KeyboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFetchedWords(e) {
+    this.nouns = e.nouns;
+    this.verbs = e.verbs;
+    this.adjs = e.adjs;
+  }
+
 }
