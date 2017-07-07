@@ -1,3 +1,18 @@
-<p>
-  madlib works!
-</p>
+<div class="row">
+  <p class="lead col" *ngIf="ml.pronoun">
+    {{aOrAn(ml.words.adjs[0].word, true)}} {{ml.words.adjs[0].word}} {{ml.words.nouns[0].word}} {{ml.words.verbs[1].word}} to the {{ml.words.nouns[1].word}}. There, {{ml.pronoun.normal}} decided that it would be a good idea to test {{ml.pronoun.possessive}} mettle by {{ml.words.verbs[0].word}} with {{aOrAn(ml.words.nouns[2].word, false)}} {{ml.words.nouns[2].word}}.
+    {{ml.words.nouns[2].word}}
+    {{ml.words.verbs[0].word}}
+    {{ml.words.verbs[2].word}}
+    {{ml.words.adjs[1].word}}
+    {{ml.words.adjs[2].word}}
+  </p>
+</div>
+
+<div class="row">
+  <div class="col mt-3 mb-3">
+    <button
+      class="btn btn-block btn-lg btn-primary"
+      (click)="ml.setMadlibReady(false)">Play Again</button>
+  </div>
+</div>

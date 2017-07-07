@@ -46,7 +46,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   }
 
   private _listenVerbs() {
-    this.nounSub = this.speech.words$
+    this.verbSub = this.speech.words$
       .filter(obj => obj.type === 'verb')
       .map(verbObj => verbObj.word)
       .subscribe(
@@ -59,7 +59,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   }
 
   private _listenAdj() {
-    this.nounSub = this.speech.words$
+    this.adjSub = this.speech.words$
       .filter(obj => obj.type === 'adj')
       .map(adjObj => adjObj.word)
       .subscribe(

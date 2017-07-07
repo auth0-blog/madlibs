@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { MadlibsService } from './../madlibs.service';
@@ -13,38 +13,46 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   progress$: Observable<number>;
   progressSub: Subscription;
   width: string;
-  goSub: Subscription;
-  @Output() finished = new EventEmitter<{[key: string]: string[]}>();
+  submitSub: Subscription;
+  pronounSub: Subscription;
 
   constructor(private ml: MadlibsService) { }
 
   ngOnInit() {
     this._setupProgress();
-    this._setupGo();
+    this._setupSubmit();
+    this._getPronoun();
   }
 
   private _setupProgress() {
     this.progress$ = Observable
       .timer(0, 50)
       .timeInterval()
-      .take(100)
+      .take(50)
       .map(e => e.value);
   }
 
-  private _setupGo() {
-    this.goSub = this.ml.go$
+  private _getPronoun() {
+    this.pronounSub = this.ml.getPronoun$()
       .subscribe(
-        (val) => {
-          this._startProgress(val);
+        (res) => this.ml.setPronoun(res)
+      );
+  }
+
+  private _setupSubmit() {
+    this.submitSub = this.ml.submit$
+      .subscribe(
+        (words) => {
+          this._startProgress(words);
         }
       );
   }
 
-  private _startProgress(val) {
+  private _startProgress(words) {
     this.progressSub = this.progress$
       .subscribe(
         (p) => {
-          this.progress = p;
+          this.progress = p * 2;
           this.width = this.progress + '%';
         },
         (err) => {
@@ -53,7 +61,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
         () => {
           this.progress = 100;
           this.width = '100%';
-          this.finished.emit(val);
+          this.ml.setMadlibReady(true);
         }
       );
   }
@@ -62,7 +70,8 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     if (this.progressSub) {
       this.progressSub.unsubscribe();
     }
-    this.goSub.unsubscribe();
+    this.submitSub.unsubscribe();
+    this.pronounSub.unsubscribe();
   }
 
 }

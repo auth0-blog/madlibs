@@ -23,7 +23,7 @@ export class WordsFormComponent implements OnInit {
   }
 
   done() {
-    this.ml.go({
+    this.ml.submit({
       nouns: this.nouns,
       verbs: this.verbs,
       adjs: this.adjs

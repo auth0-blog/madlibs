@@ -5,13 +5,26 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class MadlibsService {
-  go$ = new Subject<{[key: string]: string[]}>();
+  submit$ = new Subject<any>();
   private _API = 'http://localhost:8084/api/';
+  madlibReady = false;
+  words: any;
+  pronoun: any;
 
   constructor(private http: Http) { }
 
-  go(eventObj) {
-    this.go$.next(eventObj);
+  submit(eventObj) {
+    // form submitted with form results
+    this.submit$.next(eventObj);
+    this.words = eventObj;
+  }
+
+  setMadlibReady(val: boolean) {
+    this.madlibReady = val;
+  }
+
+  setPronoun(obj) {
+    this.pronoun = obj;
   }
 
   getNouns$() {
@@ -90,6 +103,13 @@ export class MadlibsService {
           adjs: mapWords(res[2])
         };
       });
+  }
+
+  getPronoun$() {
+    return this.http
+      .get(`${this._API}pronoun/gendered`)
+      .map(this._successHandler)
+      .catch(this._errorHandler);
   }
 
   private _successHandler(res: Response) {

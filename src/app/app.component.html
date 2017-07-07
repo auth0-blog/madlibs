@@ -1,7 +1,10 @@
 <div class="container">
   <h1 class="text-center">Madlibs</h1>
 
-  <app-listen *ngIf="speech.speechSupported"></app-listen>
-  <app-keyboard *ngIf="!speech.speechSupported"></app-keyboard>
+  <ng-template [ngIf]="!ml.madlibReady">
+    <app-listen *ngIf="speech.speechSupported"></app-listen>
+    <app-keyboard *ngIf="!speech.speechSupported"></app-keyboard>
+  </ng-template>
 
+  <app-madlib *ngIf="ml.madlibReady"></app-madlib>
 </div>
