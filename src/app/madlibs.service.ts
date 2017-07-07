@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class MadlibsService {
-  go$ = new Subject<any>();
+  go$ = new Subject<{[key: string]: string[]}>();
   private _API = 'http://localhost:8084/api/';
 
   constructor(private http: Http) { }

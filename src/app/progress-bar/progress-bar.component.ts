@@ -14,7 +14,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   progressSub: Subscription;
   width: string;
   goSub: Subscription;
-  @Output() finished = new EventEmitter<boolean>();
+  @Output() finished = new EventEmitter<{[key: string]: string[]}>();
 
   constructor(private ml: MadlibsService) { }
 
@@ -35,23 +35,25 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     this.goSub = this.ml.go$
       .subscribe(
         (val) => {
-          console.log(val, 'go!');
+          this._startProgress(val);
+        }
+      );
+  }
 
-          this.progressSub = this.progress$
-            .subscribe(
-              (p) => {
-                this.progress = p;
-                this.width = this.progress + '%';
-              },
-              (err) => {
-                console.warn('Progress error:', err);
-              },
-              () => {
-                this.progress = 100;
-                this.width = '100%';
-                this.finished.emit(true);
-              }
-            );
+  private _startProgress(val) {
+    this.progressSub = this.progress$
+      .subscribe(
+        (p) => {
+          this.progress = p;
+          this.width = this.progress + '%';
+        },
+        (err) => {
+          console.warn('Progress error:', err);
+        },
+        () => {
+          this.progress = 100;
+          this.width = '100%';
+          this.finished.emit(val);
         }
       );
   }

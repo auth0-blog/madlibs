@@ -9,6 +9,7 @@
           name="noun-{{i}}"
           class="form-control"
           [(ngModel)]="nouns[i].word"
+          [disabled]="generating"
           required>
       </div>
     </div>
@@ -21,6 +22,7 @@
           name="verb-{{i}}"
           class="form-control"
           [(ngModel)]="verbs[i].word"
+          [disabled]="generating"
           required>
       </div>
     </div>
@@ -33,6 +35,7 @@
           name="adj-{{i}}"
           class="form-control"
           [(ngModel)]="adjs[i].word"
+          [disabled]="generating"
           required>
       </div>
     </div>
@@ -46,7 +49,7 @@
         (click)="done()"
         [disabled]="!wordsForm.form.valid">Go!</button>
 
-      <app-progress-bar *ngIf="generating"></app-progress-bar>
+      <app-progress-bar [hidden]="!generating"></app-progress-bar>
     </div>
   </div>
 </form>
