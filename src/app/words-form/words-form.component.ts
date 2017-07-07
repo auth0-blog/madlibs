@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { MadlibsService } from './../madlibs.service';
 
 @Component({
   selector: 'app-words-form',
@@ -10,8 +11,9 @@ export class WordsFormComponent implements OnInit {
   @Input() verbs: any[];
   @Input() adjs: any[];
   @Output() submitForm = new EventEmitter;
+  generating = false;
 
-  constructor() { }
+  constructor(private ml: MadlibsService) { }
 
   ngOnInit() {
   }
@@ -21,11 +23,12 @@ export class WordsFormComponent implements OnInit {
   }
 
   done() {
-    this.submitForm.emit({
+    this.ml.go({
       nouns: this.nouns,
       verbs: this.verbs,
       adjs: this.adjs
     });
+    this.generating = true;
   }
 
 }

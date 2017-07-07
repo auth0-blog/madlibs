@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { MadlibsService } from './madlibs.service';
 import { SpeechService } from './speech.service';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
-import { TimerComponent } from './timer/timer.component';
 import { ListenComponent } from './listen/listen.component';
 import { MadlibComponent } from './madlib/madlib.component';
 import { WordsFormComponent } from './words-form/words-form.component';
@@ -18,7 +17,6 @@ import { GenerateWordsComponent } from './generate-words/generate-words.componen
   declarations: [
     AppComponent,
     ProgressBarComponent,
-    TimerComponent,
     ListenComponent,
     MadlibComponent,
     WordsFormComponent,

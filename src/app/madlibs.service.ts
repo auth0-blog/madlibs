@@ -5,13 +5,13 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class MadlibsService {
-  go$ = new Subject<boolean>();
+  go$ = new Subject<any>();
   private _API = 'http://localhost:8084/api/';
 
   constructor(private http: Http) { }
 
-  go() {
-    this.go$.next(true);
+  go(eventObj) {
+    this.go$.next(eventObj);
   }
 
   getNouns$() {

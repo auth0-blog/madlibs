@@ -1,10 +1,12 @@
 <div class="progress">
   <div
-    class="progress-bar"
+    class="progress-bar progress-bar-striped progress-bar-animated bg-info"
     role="progressbar"
     [style.width]="width"
     [attr.aria-valuenow]="progress"
     aria-valuemin="0"
     aria-valuemax="100">
+    <span *ngIf="progress && progress < 100">Working...</span>
   </div>
 </div>
+
