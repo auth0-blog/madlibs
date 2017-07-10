@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-4">
       <h3>Nouns <a class="badge badge-pill badge-info" href="http://www.grammar-monster.com/lessons/nouns.htm" title="Nouns are naming words, usually people, places, or things." target="_blank">?</a></h3>
-      <p class="small">For best results, enter a <strong>person</strong>, 2 <strong>places</strong>, and 2 <strong>things</strong>.</p>
-      <div *ngFor="let noun of nouns; let i = index; trackBy: trackWords" class="mb-1">
+      <p class="small">For best results, please enter 1 <strong>person</strong>, 2 <strong>places</strong>, and 2 <strong>things</strong>.</p>
+      <div *ngFor="let noun of nouns; let i = index; trackBy: trackWords" class="mb-2">
         <input
           type="text"
           name="noun-{{i}}"
@@ -17,7 +17,7 @@
     <div class="col-md-4">
       <h3>Verbs <a class="badge badge-pill badge-info" href="http://www.grammar-monster.com/lessons/verbs.htm" title="Verbs are doing words: physical action, mental action, or state of being." target="_blank">?</a></h3>
       <p class="small">For best results, use <strong>2 present tense</strong> verbs, then <strong>3 past tense</strong>.</p>
-      <div *ngFor="let verb of verbs; let i = index; trackBy: trackWords" class="mb-1">
+      <div *ngFor="let verb of verbs; let i = index; trackBy: trackWords" class="mb-2">
         <input
           type="text"
           name="verb-{{i}}"
@@ -31,7 +31,7 @@
     <div class="col-md-4">
       <h3>Adjectives <a class="badge badge-pill badge-info" href="http://www.grammar-monster.com/lessons/adjectives.htm" title="Adjectives are describing words." target="_blank">?</a></h3>
       <p class="small">For best results, be particularly <strong>creative</strong> with your adjectives.</p>
-      <div *ngFor="let adj of adjs; let i = index; trackBy: trackWords" class="mb-1">
+      <div *ngFor="let adj of adjs; let i = index; trackBy: trackWords" class="mb-2">
         <input
           type="text"
           name="adj-{{i}}"

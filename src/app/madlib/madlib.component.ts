@@ -13,9 +13,9 @@ export class MadlibComponent implements OnInit {
   }
 
   aOrAn(word: string, beginSentence: boolean) {
-    const regex = /\b[aeiou]\w*/ig;
+    const startsWithVowel = ['a', 'e', 'i', 'o', 'u'].indexOf(word.charAt(0).toLowerCase()) !== -1;
 
-    if (word.match(regex)) {
+    if (startsWithVowel) {
       return beginSentence ? 'An' : 'an';
     } else {
       return beginSentence ? 'A' : 'a';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Word } from './../word.model';
+import { Words } from './../word.model';
 
 @Component({
   selector: 'app-keyboard',
@@ -7,31 +7,16 @@ import { Word } from './../word.model';
   styleUrls: ['./keyboard.component.scss']
 })
 export class KeyboardComponent implements OnInit {
-  nouns: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
-  verbs: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
-  adjs: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
+  nouns = new Words().array;
+  verbs = new Words().array;
+  adjs = new Words().array;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onFetchedWords(e) {
+  onFetchedAPIWords(e) {
     this.nouns = e.nouns;
     this.verbs = e.verbs;
     this.adjs = e.adjs;

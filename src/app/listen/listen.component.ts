@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
-import { Word } from './../word.model';
+import { Word, Words } from './../word.model';
 import { MadlibsService } from './../madlibs.service';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,24 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
-  verbs: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
-  adjs: Word[] = [
-    {id: 0, word: ''},
-    {id: 1, word: ''},
-    {id: 2, word: ''},
-    {id: 3, word: ''},
-    {id: 4, word: ''}];
+  nouns = new Words().array;
+  verbs = new Words().array;
+  adjs = new Words().array;
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
@@ -40,7 +25,6 @@ export class ListenComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.speech.init();
-
     this._listenNouns();
     this._listenVerbs();
     this._listenAdj();
@@ -100,14 +84,14 @@ export class ListenComponent implements OnInit, OnDestroy {
     return arr.map((item, i) => {
       if (!item.word && !added) {
         added = true;
-        return {id: item.id, word: newWord};
+        return new Word(item.id, newWord);
       } else {
         return item;
       }
     });
   }
 
-  onFetchedWords(e) {
+  onFetchedAPIWords(e) {
     this.nouns = e.nouns;
     this.verbs = e.verbs;
     this.adjs = e.adjs;
