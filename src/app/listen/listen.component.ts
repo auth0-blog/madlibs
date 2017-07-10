@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { Word, Words } from './../word.model';
-import { MadlibsService } from './../madlibs.service';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -19,7 +18,6 @@ export class ListenComponent implements OnInit, OnDestroy {
   errorsSub: Subscription;
 
   constructor(
-    private ml: MadlibsService,
     public speech: SpeechService,
     private zone: NgZone) { }
 

@@ -49,7 +49,6 @@
       <button
         *ngIf="!generating"
         class="btn btn-block btn-lg btn-success"
-        (click)="done()"
         [disabled]="!wordsForm.form.valid">Go!</button>
 
       <app-progress-bar [hidden]="!generating"></app-progress-bar>
