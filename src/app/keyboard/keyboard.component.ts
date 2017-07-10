@@ -7,9 +7,24 @@ import { Word } from './../word.model';
   styleUrls: ['./keyboard.component.scss']
 })
 export class KeyboardComponent implements OnInit {
-  nouns: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  verbs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  adjs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  nouns: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
+  verbs: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
+  adjs: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
 
   constructor() { }
 

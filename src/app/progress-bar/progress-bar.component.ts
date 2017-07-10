@@ -21,7 +21,6 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._setupProgress();
     this._setupSubmit();
-    this._getPronoun();
   }
 
   private _setupProgress() {
@@ -49,6 +48,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   }
 
   private _startProgress(words) {
+    this._getPronoun();
     this.progressSub = this.progress$
       .subscribe(
         (p) => {

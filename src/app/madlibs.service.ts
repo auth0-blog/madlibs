@@ -43,7 +43,7 @@ export class MadlibsService {
       .map(this._successHandler)
       .catch(this._errorHandler);
 
-    return Observable.forkJoin([nounPerson$, nounPlace$, nounThing$]);
+    return Observable.forkJoin([nounPerson$, nounPlace$, nounPlace$, nounThing$, nounThing$]);
   }
 
   getVerbs$() {
@@ -52,36 +52,21 @@ export class MadlibsService {
       .map(this._successHandler)
       .catch(this._errorHandler);
 
-    const verbPast1$ = this.http
+    const verbPast$ = this.http
       .get(`${this._API}verb/past`)
       .map(this._successHandler)
       .catch(this._errorHandler);
 
-    const verbPast2$ = this.http
-      .get(`${this._API}verb/past`)
-      .map(this._successHandler)
-      .catch(this._errorHandler);
-
-    return Observable.forkJoin([verbPresent$, verbPast1$, verbPast2$]);
+    return Observable.forkJoin([verbPresent$, verbPresent$, verbPast$, verbPast$, verbPast$]);
   }
 
   getAdjs$() {
-    const adj1$ = this.http
+    const adj$ = this.http
       .get(`${this._API}adjective`)
       .map(this._successHandler)
       .catch(this._errorHandler);
 
-    const adj2$ = this.http
-      .get(`${this._API}adjective`)
-      .map(this._successHandler)
-      .catch(this._errorHandler);
-
-    const adj3$ = this.http
-      .get(`${this._API}adjective`)
-      .map(this._successHandler)
-      .catch(this._errorHandler);
-
-    return Observable.forkJoin([adj1$, adj2$, adj3$]);
+    return Observable.forkJoin([adj$, adj$, adj$, adj$, adj$]);
   }
 
   getWords$() {

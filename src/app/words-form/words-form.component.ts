@@ -12,6 +12,10 @@ export class WordsFormComponent implements OnInit {
   @Input() adjs: any[];
   @Output() submitForm = new EventEmitter;
   generating = false;
+  placeholders = {
+    noun: ['person', 'place', 'place', 'thing', 'thing'],
+    verb: ['present', 'present', 'past', 'past', 'past']
+  };
 
   constructor(private ml: MadlibsService) { }
 
@@ -20,6 +24,10 @@ export class WordsFormComponent implements OnInit {
 
   trackWords(index, word) {
     return word ? word.id : undefined;
+  }
+
+  getPlaceholder(type: string, id: number) {
+    return this.placeholders[type][id];
   }
 
   done() {

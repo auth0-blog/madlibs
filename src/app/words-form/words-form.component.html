@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4">
       <h3>Nouns <a class="badge badge-pill badge-info" href="http://www.grammar-monster.com/lessons/nouns.htm" title="Nouns are naming words, usually people, places, or things." target="_blank">?</a></h3>
-      <p class="small">For best results, enter a <strong>person</strong>, followed by a <strong>place</strong>, then a <strong>thing</strong>.</p>
+      <p class="small">For best results, enter a <strong>person</strong>, 2 <strong>places</strong>, and 2 <strong>things</strong>.</p>
       <div *ngFor="let noun of nouns; let i = index; trackBy: trackWords" class="mb-1">
         <input
           type="text"
@@ -10,12 +10,13 @@
           class="form-control"
           [(ngModel)]="nouns[i].word"
           [disabled]="generating"
+          [placeholder]="getPlaceholder('noun', i)"
           required>
       </div>
     </div>
     <div class="col-md-4">
       <h3>Verbs <a class="badge badge-pill badge-info" href="http://www.grammar-monster.com/lessons/verbs.htm" title="Verbs are doing words: physical action, mental action, or state of being." target="_blank">?</a></h3>
-      <p class="small">For best results, use <strong>1 present tense</strong> verb, then <strong>2 past tense</strong>.</p>
+      <p class="small">For best results, use <strong>2 present tense</strong> verbs, then <strong>3 past tense</strong>.</p>
       <div *ngFor="let verb of verbs; let i = index; trackBy: trackWords" class="mb-1">
         <input
           type="text"
@@ -23,6 +24,7 @@
           class="form-control"
           [(ngModel)]="verbs[i].word"
           [disabled]="generating"
+          [placeholder]="getPlaceholder('verb', i)"
           required>
       </div>
     </div>
@@ -36,6 +38,7 @@
           class="form-control"
           [(ngModel)]="adjs[i].word"
           [disabled]="generating"
+          placeholder="adjective"
           required>
       </div>
     </div>

@@ -10,9 +10,24 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  verbs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
-  adjs: Word[] = [{id: 0, word: ''}, {id: 1, word: ''}, {id: 2, word: ''}];
+  nouns: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
+  verbs: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
+  adjs: Word[] = [
+    {id: 0, word: ''},
+    {id: 1, word: ''},
+    {id: 2, word: ''},
+    {id: 3, word: ''},
+    {id: 4, word: ''}];
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
