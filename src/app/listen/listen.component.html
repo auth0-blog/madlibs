@@ -1,4 +1,7 @@
 <div class="alert alert-info mt-3">
+  <app-generate-words
+    (fetchedWords)="onFetchedAPIWords($event)"></app-generate-words>
+
   <h2 class="text-center">Speak to Play</h2>
 
   <p>Your browser <a class="alert-link" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility">supports speech recognition</a>! To play a madlib game using speech, follow these instructions:</p>
@@ -38,8 +41,11 @@
     </div>
   </div>
 
-  <app-generate-words
-    (fetchedWords)="onFetchedAPIWords($event)"></app-generate-words>
+  <div class="row" *ngIf="errorMsg">
+    <div class="col">
+      <p class="alert alert-warning mt-3">{{errorMsg}}</p>
+    </div>
+  </div>
 </div>
 
 <app-words-form

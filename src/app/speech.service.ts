@@ -35,6 +35,9 @@ export class SpeechService {
     annyang.addCallback('errorPermissionDenied', (err) => {
       this._handleError('denied', 'User denied microphone permissions.', err);
     });
+    annyang.addCallback('resultNoMatch', (userSaid) => {
+      this._handleError('no match', 'Command not recognized. Please try again.', { result: userSaid });
+    });
   }
 
   private _handleError(error, msg, errObj) {

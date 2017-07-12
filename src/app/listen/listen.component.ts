@@ -16,6 +16,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   verbSub: Subscription;
   adjSub: Subscription;
   errorsSub: Subscription;
+  errorMsg: string;
 
   constructor(
     public speech: SpeechService,
@@ -36,6 +37,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (noun) => {
           this.zone.run(() => {
+            this._setError();
             this.nouns = this._updateWords(this.nouns, noun);
           });
         }
@@ -49,6 +51,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (verb) => {
           this.zone.run(() => {
+            this._setError();
             this.verbs = this._updateWords(this.verbs, verb);
           });
         }
@@ -62,6 +65,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (adj) => {
           this.zone.run(() => {
+            this._setError();
             this.adjs = this._updateWords(this.adjs, adj);
           });
         }
@@ -72,9 +76,20 @@ export class ListenComponent implements OnInit, OnDestroy {
     this.errorsSub = this.speech.errors$
       .subscribe(
         (err) => {
-          console.error(err);
+          this.zone.run(() => {
+            this._setError(err);
+          });
         }
       );
+  }
+
+  private _setError(err?: any) {
+    if (err) {
+      console.warn('Speech Recognition Error:', err);
+      this.errorMsg = err.message;
+    } else {
+      this.errorMsg = null;
+    }
   }
 
   private _updateWords(arr, newWord) {
@@ -99,6 +114,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     this.nounSub.unsubscribe();
     this.verbSub.unsubscribe();
     this.adjSub.unsubscribe();
+    this.errorsSub.unsubscribe();
   }
 
 }
