@@ -36,7 +36,10 @@ export class SpeechService {
       this._handleError('denied', 'User denied microphone permissions.', err);
     });
     annyang.addCallback('resultNoMatch', (userSaid) => {
-      this._handleError('no match', 'Command not recognized. Please try again.', { result: userSaid });
+      this._handleError(
+        'no match',
+        'Spoken command not recognized. Say "noun [word]", "verb [word]", OR "adjective [word]".',
+        { results: userSaid });
     });
   }
 

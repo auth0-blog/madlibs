@@ -30,6 +30,14 @@ export class ListenComponent implements OnInit, OnDestroy {
     this._listenErrors();
   }
 
+  get btnLabel() {
+    if (this.speech.listening) {
+      return 'Listening...';
+    } else {
+      return 'Listen';
+    }
+  }
+
   private _listenNouns() {
     this.nounSub = this.speech.words$
       .filter(obj => obj.type === 'noun')
@@ -85,7 +93,7 @@ export class ListenComponent implements OnInit, OnDestroy {
 
   private _setError(err?: any) {
     if (err) {
-      console.warn('Speech Recognition Error:', err);
+      console.log('Speech Recognition:', err);
       this.errorMsg = err.message;
     } else {
       this.errorMsg = null;
