@@ -30,12 +30,8 @@ export class ListenComponent implements OnInit, OnDestroy {
     this._listenErrors();
   }
 
-  get btnLabel() {
-    if (this.speech.listening) {
-      return 'Listening...';
-    } else {
-      return 'Listen';
-    }
+  get btnLabel(): string {
+    return this.speech.listening ? 'Listening...' : 'Listen';
   }
 
   private _listenNouns() {
