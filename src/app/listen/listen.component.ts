@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Word, Words } from './../word.model';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -18,9 +18,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   errorsSub: Subscription;
   errorMsg: string;
 
-  constructor(
-    public speech: SpeechService,
-    private zone: NgZone) { }
+  constructor(public speech: SpeechService) { }
 
   ngOnInit() {
     this.speech.init();
@@ -40,10 +38,8 @@ export class ListenComponent implements OnInit, OnDestroy {
       .map(nounObj => nounObj.word)
       .subscribe(
         (noun) => {
-          this.zone.run(() => {
-            this._setError();
-            this.nouns = this._updateWords(this.nouns, noun);
-          });
+          this._setError();
+          this.nouns = this._updateWords(this.nouns, noun);
         }
       );
   }
@@ -54,10 +50,8 @@ export class ListenComponent implements OnInit, OnDestroy {
       .map(verbObj => verbObj.word)
       .subscribe(
         (verb) => {
-          this.zone.run(() => {
-            this._setError();
-            this.verbs = this._updateWords(this.verbs, verb);
-          });
+          this._setError();
+          this.verbs = this._updateWords(this.verbs, verb);
         }
       );
   }
@@ -68,10 +62,8 @@ export class ListenComponent implements OnInit, OnDestroy {
       .map(adjObj => adjObj.word)
       .subscribe(
         (adj) => {
-          this.zone.run(() => {
-            this._setError();
-            this.adjs = this._updateWords(this.adjs, adj);
-          });
+          this._setError();
+          this.adjs = this._updateWords(this.adjs, adj);
         }
       );
   }
@@ -80,9 +72,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     this.errorsSub = this.speech.errors$
       .subscribe(
         (err) => {
-          this.zone.run(() => {
-            this._setError(err);
-          });
+          this._setError(err);
         }
       );
   }

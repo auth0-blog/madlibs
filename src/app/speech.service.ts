@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+
 
 declare var annyang: any;
 
@@ -9,7 +10,7 @@ export class SpeechService {
   errors$ = new Subject<{[key: string]: any}>();
   listening = false;
 
-  constructor() {}
+  constructor(private zone: NgZone) {}
 
   get speechSupported(): boolean {
     return !!annyang;
@@ -17,9 +18,21 @@ export class SpeechService {
 
   init() {
     const commands = {
-      'noun :noun': (noun) => this.words$.next({type: 'noun', 'word': noun}),
-      'verb :verb': (verb) => this.words$.next({type: 'verb', 'word': verb}),
-      'adjective :adjective': (adj) => this.words$.next({type: 'adj', 'word': adj})
+      'noun :noun': (noun) => {
+        this.zone.run(() => {
+          this.words$.next({type: 'noun', 'word': noun});
+        });
+      },
+      'verb :verb': (verb) => {
+        this.zone.run(() => {
+          this.words$.next({type: 'verb', 'word': verb});
+        });
+      },
+      'adjective :adjective': (adj) => {
+        this.zone.run(() => {
+          this.words$.next({type: 'adj', 'word': adj});
+        });
+      }
     };
     annyang.addCommands(commands);
 
@@ -44,10 +57,12 @@ export class SpeechService {
   }
 
   private _handleError(error, msg, errObj) {
-    this.errors$.next({
-      error: error,
-      message: msg,
-      obj: errObj
+    this.zone.run(() => {
+      this.errors$.next({
+        error: error,
+        message: msg,
+        obj: errObj
+      });
     });
   }
 
