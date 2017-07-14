@@ -27,7 +27,7 @@ export class SpeechService {
           this.words$.next({type: 'verb', 'word': verb});
         });
       },
-      'adjective :adjective': (adj) => {
+      'adjective :adj': (adj) => {
         this.zone.run(() => {
           this.words$.next({type: 'adj', 'word': adj});
         });
