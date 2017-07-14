@@ -27,7 +27,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     this.progress$ = Observable
       .timer(0, 50)
       .timeInterval()
-      .take(50)
+      .takeUntil(Observable.timer(2500))
       .map(e => e.value);
   }
 
