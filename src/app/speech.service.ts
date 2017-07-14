@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-
 declare var annyang: any;
 
 @Injectable()
