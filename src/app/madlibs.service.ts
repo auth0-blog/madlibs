@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class MadlibsService {
@@ -11,7 +13,7 @@ export class MadlibsService {
   words: any;
   pronoun: any;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   submit(eventObj) {
     // form submitted with form results
@@ -29,17 +31,17 @@ export class MadlibsService {
 
   getNouns$() {
     const nounPerson$ = this.http
-      .get(`${this._API}noun/person`)
+      .get(`${this._API}noun/person`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
     const nounPlace$ = this.http
-      .get(`${this._API}noun/place`)
+      .get(`${this._API}noun/place`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
     const nounThing$ = this.http
-      .get(`${this._API}noun/thing`)
+      .get(`${this._API}noun/thing`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
@@ -48,12 +50,12 @@ export class MadlibsService {
 
   getVerbs$() {
     const verbPresent$ = this.http
-      .get(`${this._API}verb/present`)
+      .get(`${this._API}verb/present`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
     const verbPast$ = this.http
-      .get(`${this._API}verb/past`)
+      .get(`${this._API}verb/past`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
@@ -62,7 +64,7 @@ export class MadlibsService {
 
   getAdjs$() {
     const adj$ = this.http
-      .get(`${this._API}adjective`)
+      .get(`${this._API}adjective`, {responseType: 'text'})
       .map(this._successHandler)
       .catch(this._errorHandler);
 
@@ -93,15 +95,16 @@ export class MadlibsService {
   getPronoun$() {
     return this.http
       .get(`${this._API}pronoun/gendered`)
-      .map(this._successHandler)
       .catch(this._errorHandler);
   }
 
-  private _successHandler(res: Response) {
-    return res.json();
+  private _successHandler(res: String) {
+    // Remove all double quotes from response
+    // This is a product of receiving text response
+    return res.replace(/"/g, '');
   }
 
-  private _errorHandler(err: any) {
+  private _errorHandler(err: HttpErrorResponse | any) {
     const errorMsg = err.message || 'Error: Unable to complete request.';
     return Observable.throw(errorMsg);
   }
