@@ -87,19 +87,18 @@ export class ListenComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _updateWords(type, arr, newWord) {
-    const _checkArrayFull = arr.every((item) => {
-      return !!item.word === true;
-    });
+  private _updateWords(type: string, arr: Word[], newWord: string) {
+    const _checkArrayFull = arr.every(item => !!item.word === true);
+
     if (_checkArrayFull) {
       this.arrayFull = type;
       return arr;
     } else {
-      let added = false;
+      let _added = false;
       this.arrayFull = null;
-      return arr.map((item, i) => {
-        if (!item.word && !added) {
-          added = true;
+      return arr.map((item) => {
+        if (!item.word && !_added) {
+          _added = true;
           return new Word(item.id, newWord);
         } else {
           return item;

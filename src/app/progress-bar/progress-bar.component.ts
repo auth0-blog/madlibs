@@ -27,7 +27,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     this.progress$ = Observable
       .timer(0, 50)
       .timeInterval()
-      .takeUntil(Observable.timer(2500))
+      .takeUntil(Observable.timer(2600))
       .map(e => e.value);
   }
 
@@ -59,8 +59,6 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
           console.warn('Progress error:', err);
         },
         () => {
-          this.progress = 100;
-          this.width = '100%';
           this.ml.setMadlibReady(true);
         }
       );
