@@ -9,7 +9,7 @@ export class Words {
   constructor(
     public array: Word[] = []
   ) {
-    for (let i = 0; i <= 4; i++) {
+    for (let i = 0; i < 5; i++) {
       array.push(new Word(i, ''));
     }
   }
