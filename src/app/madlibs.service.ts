@@ -32,17 +32,17 @@ export class MadlibsService {
   getNouns$() {
     const nounPerson$ = this.http
       .get(`${this._API}noun/person`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     const nounPlace$ = this.http
       .get(`${this._API}noun/place`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     const nounThing$ = this.http
       .get(`${this._API}noun/thing`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     return Observable.forkJoin([nounPerson$, nounPlace$, nounPlace$, nounThing$, nounThing$]);
@@ -51,12 +51,12 @@ export class MadlibsService {
   getVerbs$() {
     const verbPresent$ = this.http
       .get(`${this._API}verb/present`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     const verbPast$ = this.http
       .get(`${this._API}verb/past`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     return Observable.forkJoin([verbPresent$, verbPresent$, verbPast$, verbPast$, verbPast$]);
@@ -65,7 +65,7 @@ export class MadlibsService {
   getAdjs$() {
     const adj$ = this.http
       .get(`${this._API}adjective`, {responseType: 'text'})
-      .map(this._successHandler)
+      .map(this._stringSuccessHandler)
       .catch(this._errorHandler);
 
     return Observable.forkJoin([adj$, adj$, adj$, adj$, adj$]);
@@ -98,7 +98,7 @@ export class MadlibsService {
       .catch(this._errorHandler);
   }
 
-  private _successHandler(res: String) {
+  private _stringSuccessHandler(res: string): string {
     // Remove all double quotes from response
     // This is a product of receiving text response
     return res.replace(/"/g, '');

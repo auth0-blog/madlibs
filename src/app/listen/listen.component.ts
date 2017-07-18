@@ -15,6 +15,7 @@ export class ListenComponent implements OnInit, OnDestroy {
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
+  arrayFull: string;
   errorsSub: Subscription;
   errorMsg: string;
 
@@ -39,7 +40,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (noun) => {
           this._setError();
-          this.nouns = this._updateWords(this.nouns, noun);
+          this.nouns = this._updateWords('nouns', this.nouns, noun);
         }
       );
   }
@@ -51,7 +52,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (verb) => {
           this._setError();
-          this.verbs = this._updateWords(this.verbs, verb);
+          this.verbs = this._updateWords('verbs', this.verbs, verb);
         }
       );
   }
@@ -63,7 +64,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .subscribe(
         (adj) => {
           this._setError();
-          this.adjs = this._updateWords(this.adjs, adj);
+          this.adjs = this._updateWords('adjectives', this.adjs, adj);
         }
       );
   }
@@ -86,16 +87,25 @@ export class ListenComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _updateWords(arr, newWord) {
-    let added = false;
-    return arr.map((item, i) => {
-      if (!item.word && !added) {
-        added = true;
-        return new Word(item.id, newWord);
-      } else {
-        return item;
-      }
+  private _updateWords(type, arr, newWord) {
+    const _checkArrayFull = arr.every((item) => {
+      return !!item.word === true;
     });
+    if (_checkArrayFull) {
+      this.arrayFull = type;
+      return arr;
+    } else {
+      let added = false;
+      this.arrayFull = null;
+      return arr.map((item, i) => {
+        if (!item.word && !added) {
+          added = true;
+          return new Word(item.id, newWord);
+        } else {
+          return item;
+        }
+      });
+    }
   }
 
   onFetchedAPIWords(e) {

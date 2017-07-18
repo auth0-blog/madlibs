@@ -5,5 +5,16 @@
 <p>
   <button
     class="btn btn-primary btn-block"
-    (click)="fetchWords()">Generate Words</button>
+    (click)="fetchWords()">
+      <ng-template [ngIf]="!loading">Generate Words</ng-template>
+      <ng-template [ngIf]="loading">Generating...</ng-template>
+  </button>
+</p>
+
+<p *ngIf="generated" class="alert alert-success">
+  <strong>Success!</strong> Madlib words have been generated. Please scroll down to view or edit your words.
+</p>
+
+<p *ngIf="error" class="alert alert-danger">
+  <strong>Oops!</strong> An error occurred while trying to automatically generate words. Please try again or enter your own words!
 </p>

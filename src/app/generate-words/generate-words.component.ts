@@ -10,6 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class GenerateWordsComponent implements OnInit, OnDestroy {
   @Output() fetchedWords = new EventEmitter;
   wordsSub: Subscription;
+  loading = false;
+  generated = false;
+  error = false;
 
   constructor(private ml: MadlibsService) { }
 
@@ -17,12 +20,22 @@ export class GenerateWordsComponent implements OnInit, OnDestroy {
   }
 
   fetchWords() {
+    this.loading = true;
+    this.generated = false;
+    this.error = false;
+
     this.wordsSub = this.ml.getWords$()
       .subscribe(
         (res) => {
+          this.loading = false;
+          this.generated = true;
+          this.error = false;
           this.fetchedWords.emit(res);
         },
         (err) => {
+          this.loading = false;
+          this.generated = false;
+          this.error = true;
           console.warn(err);
         }
       );

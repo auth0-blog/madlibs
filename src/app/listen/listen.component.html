@@ -41,9 +41,12 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="errorMsg">
+  <div class="row" *ngIf="errorMsg || arrayFull">
     <div class="col">
-      <p class="alert alert-warning">{{errorMsg}}</p>
+      <p class="alert alert-warning">
+        <ng-template [ngIf]="errorMsg">{{errorMsg}}</ng-template>
+        <ng-template [ngIf]="arrayFull">You've already filled in all the available fields for <strong>{{arrayFull}}</strong>.</ng-template>
+      </p>
     </div>
   </div>
 </div>
