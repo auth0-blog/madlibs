@@ -38,7 +38,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .filter(obj => obj.type === 'noun')
       .map(nounObj => nounObj.word)
       .subscribe(
-        (noun) => {
+        noun => {
           this._setError();
           this.nouns = this._updateWords('nouns', this.nouns, noun);
         }
@@ -50,7 +50,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .filter(obj => obj.type === 'verb')
       .map(verbObj => verbObj.word)
       .subscribe(
-        (verb) => {
+        verb => {
           this._setError();
           this.verbs = this._updateWords('verbs', this.verbs, verb);
         }
@@ -62,7 +62,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       .filter(obj => obj.type === 'adj')
       .map(adjObj => adjObj.word)
       .subscribe(
-        (adj) => {
+        adj => {
           this._setError();
           this.adjs = this._updateWords('adjectives', this.adjs, adj);
         }
@@ -71,11 +71,7 @@ export class ListenComponent implements OnInit, OnDestroy {
 
   private _listenErrors() {
     this.errorsSub = this.speech.errors$
-      .subscribe(
-        (err) => {
-          this._setError(err);
-        }
-      );
+      .subscribe(err => this._setError(err));
   }
 
   private _setError(err?: any) {

@@ -33,34 +33,24 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
 
   private _getPronoun() {
     this.pronounSub = this.ml.getPronoun$()
-      .subscribe(
-        (res) => this.ml.setPronoun(res)
-      );
+      .subscribe(res => this.ml.setPronoun(res));
   }
 
   private _setupSubmit() {
     this.submitSub = this.ml.submit$
-      .subscribe(
-        (words) => {
-          this._startProgress(words);
-        }
-      );
+      .subscribe(words => this._startProgress(words));
   }
 
   private _startProgress(words) {
     this._getPronoun();
     this.progressSub = this.progress$
       .subscribe(
-        (p) => {
+        p => {
           this.progress = p * 2;
           this.width = this.progress + '%';
         },
-        (err) => {
-          console.warn('Progress error:', err);
-        },
-        () => {
-          this.ml.setMadlibReady(true);
-        }
+        err => console.warn('Progress error:', err),
+        () => this.ml.setMadlibReady(true)
       );
   }
 
