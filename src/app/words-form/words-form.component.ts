@@ -26,8 +26,8 @@ export class WordsFormComponent implements OnInit {
     return word ? word.id : undefined;
   }
 
-  getPlaceholder(type: string, id: number) {
-    return this.placeholders[type][id];
+  getPlaceholder(type: string, index: number) {
+    return this.placeholders[type][index];
   }
 
   done() {
