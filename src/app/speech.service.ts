@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
+// TypeScript declaration for annyang
 declare var annyang: any;
 
 @Injectable()
@@ -35,6 +36,7 @@ export class SpeechService {
     };
     annyang.addCommands(commands);
 
+    // Log anything the user says and what speech recognition thinks it might be
     // annyang.addCallback('result', (userSaid) => {
     //   console.log('User may have said:', userSaid);
     // });
