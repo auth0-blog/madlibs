@@ -94,7 +94,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     } else {
       let _added = false;
       this.arrayFull = null;
-      return arr.map((item) => {
+      return arr.map(item => {
         if (!item.word && !_added) {
           _added = true;
           return new Word(item.id, newWord);
