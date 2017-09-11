@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Word } from './../word.model';
 import { MadlibsService } from './../madlibs.service';
 
 @Component({
@@ -7,9 +8,9 @@ import { MadlibsService } from './../madlibs.service';
   styleUrls: ['./words-form.component.scss']
 })
 export class WordsFormComponent implements OnInit {
-  @Input() nouns: any[];
-  @Input() verbs: any[];
-  @Input() adjs: any[];
+  @Input() nouns: Word[];
+  @Input() verbs: Word[];
+  @Input() adjs: Word[];
   @Output() submitForm = new EventEmitter;
   generating = false;
   placeholders = {
