@@ -3,7 +3,7 @@ export class Word {
     public id: number,
     public word: string
   ) {}
-};
+}
 
 export class Words {
   constructor(
@@ -13,4 +13,4 @@ export class Words {
       array.push(new Word(i, ''));
     }
   }
-};
+}
