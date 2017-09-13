@@ -75,16 +75,10 @@ export class MadlibsService {
     return Observable
       .zip(this.getNouns$(), this.getVerbs$(), this.getAdjs$())
       .map((res) => {
-        const mapWords = (words) => {
-          return words.map((word, i) => {
-            return word;
-          });
-        };
-
         return {
-          nouns: mapWords(res[0]),
-          verbs: mapWords(res[1]),
-          adjs: mapWords(res[2])
+          nouns: res[0],
+          verbs: res[1],
+          adjs: res[2]
         };
       });
   }
