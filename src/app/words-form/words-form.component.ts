@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Word } from './../word.model';
 import { MadlibsService } from './../madlibs.service';
 
 @Component({
@@ -8,9 +7,9 @@ import { MadlibsService } from './../madlibs.service';
   styleUrls: ['./words-form.component.scss']
 })
 export class WordsFormComponent {
-  @Input() nouns: Word[];
-  @Input() verbs: Word[];
-  @Input() adjs: Word[];
+  @Input() nouns: string[];
+  @Input() verbs: string[];
+  @Input() adjs: string[];
   generating = false;
   placeholders = {
     noun: ['person', 'place', 'place', 'thing', 'thing'],
@@ -19,8 +18,8 @@ export class WordsFormComponent {
 
   constructor(private ml: MadlibsService) { }
 
-  trackWords(index, word) {
-    return word ? word.id : undefined;
+  trackWords(index) {
+    return index;
   }
 
   getPlaceholder(type: string, index: number) {

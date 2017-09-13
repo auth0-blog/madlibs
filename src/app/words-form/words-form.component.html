@@ -8,7 +8,7 @@
           type="text"
           name="noun-{{i}}"
           class="form-control"
-          [(ngModel)]="nouns[i].word"
+          [(ngModel)]="nouns[i]"
           [disabled]="generating"
           [placeholder]="getPlaceholder('noun', i)"
           required>
@@ -22,7 +22,7 @@
           type="text"
           name="verb-{{i}}"
           class="form-control"
-          [(ngModel)]="verbs[i].word"
+          [(ngModel)]="verbs[i]"
           [disabled]="generating"
           [placeholder]="getPlaceholder('verb', i)"
           required>
@@ -36,7 +36,7 @@
           type="text"
           name="adj-{{i}}"
           class="form-control"
-          [(ngModel)]="adjs[i].word"
+          [(ngModel)]="adjs[i]"
           [disabled]="generating"
           placeholder="adjective"
           required>

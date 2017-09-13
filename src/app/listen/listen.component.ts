@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Word, Words } from './../word.model';
+import { Words } from './../words';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -11,9 +11,9 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: Word[] = new Words().array;
-  verbs: Word[] = new Words().array;
-  adjs: Word[] = new Words().array;
+  nouns: string[] = new Words().array;
+  verbs: string[] = new Words().array;
+  adjs: string[] = new Words().array;
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
@@ -85,8 +85,8 @@ export class ListenComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _updateWords(type: string, arr: Word[], newWord: string) {
-    const _checkArrayFull = arr.every(item => !!item.word === true);
+  private _updateWords(type: string, arr: string[], newWord: string) {
+    const _checkArrayFull = arr.every(item => !!item === true);
 
     if (_checkArrayFull) {
       this.arrayFull = type;
@@ -95,9 +95,9 @@ export class ListenComponent implements OnInit, OnDestroy {
       let _added = false;
       this.arrayFull = null;
       return arr.map(item => {
-        if (!item.word && !_added) {
+        if (!item && !_added) {
           _added = true;
-          return new Word(item.id, newWord);
+          return newWord;
         } else {
           return item;
         }

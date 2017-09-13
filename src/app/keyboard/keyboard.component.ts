@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Word, Words } from './../word.model';
+import { Words } from './../words';
 
 @Component({
   selector: 'app-keyboard',
@@ -7,9 +7,9 @@ import { Word, Words } from './../word.model';
   styleUrls: ['./keyboard.component.scss']
 })
 export class KeyboardComponent implements OnInit {
-  nouns: Word[] = new Words().array;
-  verbs: Word[] = new Words().array;
-  adjs: Word[] = new Words().array;
+  nouns: string[] = new Words().array;
+  verbs: string[] = new Words().array;
+  adjs: string[] = new Words().array;
 
   constructor() { }
 

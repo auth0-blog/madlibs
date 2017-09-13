@@ -77,10 +77,7 @@ export class MadlibsService {
       .map((res) => {
         const mapWords = (words) => {
           return words.map((word, i) => {
-            return {
-              id: i,
-              word: word
-            };
+            return word;
           });
         };
 
