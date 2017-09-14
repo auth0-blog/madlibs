@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Words } from './../words';
 
 @Component({
@@ -6,15 +6,12 @@ import { Words } from './../words';
   templateUrl: './keyboard.component.html',
   styleUrls: ['./keyboard.component.scss']
 })
-export class KeyboardComponent implements OnInit {
+export class KeyboardComponent {
   nouns: string[] = new Words().array;
   verbs: string[] = new Words().array;
   adjs: string[] = new Words().array;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   onFetchedAPIWords(e) {
     this.nouns = e.nouns;
