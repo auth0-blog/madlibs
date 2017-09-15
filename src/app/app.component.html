@@ -1,10 +1,10 @@
 <div class="container">
   <h1 class="text-center">Madlibs</h1>
 
-  <ng-template [ngIf]="!ml.madlibReady">
+  <ng-template [ngIf]="!ml.madlibReady || !ml.pronoun">
     <app-listen *ngIf="speech.speechSupported"></app-listen>
     <app-keyboard *ngIf="!speech.speechSupported"></app-keyboard>
   </ng-template>
 
-  <app-madlib *ngIf="ml.madlibReady"></app-madlib>
+  <app-madlib *ngIf="ml.madlibReady && ml.pronoun"></app-madlib>
 </div>

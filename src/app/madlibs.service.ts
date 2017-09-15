@@ -29,6 +29,17 @@ export class MadlibsService {
     this.pronoun = obj;
   }
 
+  private _stringSuccessHandler(res: string): string {
+    // Remove all double quotes from response
+    // This is a product of receiving text response
+    return res.replace(/"/g, '');
+  }
+
+  private _errorHandler(err: HttpErrorResponse | any) {
+    const errorMsg = err.message || 'Error: Unable to complete request.';
+    return Observable.throw(errorMsg);
+  }
+
   getNouns$() {
     const nounPerson$ = this.http
       .get(`${this._API}noun/person`, {responseType: 'text'})
@@ -87,17 +98,6 @@ export class MadlibsService {
     return this.http
       .get(`${this._API}pronoun/gendered`)
       .catch(this._errorHandler);
-  }
-
-  private _stringSuccessHandler(res: string): string {
-    // Remove all double quotes from response
-    // This is a product of receiving text response
-    return res.replace(/"/g, '');
-  }
-
-  private _errorHandler(err: HttpErrorResponse | any) {
-    const errorMsg = err.message || 'Error: Unable to complete request.';
-    return Observable.throw(errorMsg);
   }
 
 }

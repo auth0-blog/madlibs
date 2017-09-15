@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { MadlibsService } from './../madlibs.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './generate-words.component.html',
   styleUrls: ['./generate-words.component.scss']
 })
-export class GenerateWordsComponent implements OnInit, OnDestroy {
+export class GenerateWordsComponent implements OnDestroy {
   @Output() fetchedWords = new EventEmitter;
   wordsSub: Subscription;
   loading = false;
@@ -15,9 +15,6 @@ export class GenerateWordsComponent implements OnInit, OnDestroy {
   error = false;
 
   constructor(private ml: MadlibsService) { }
-
-  ngOnInit() {
-  }
 
   fetchWords() {
     this.loading = true;
