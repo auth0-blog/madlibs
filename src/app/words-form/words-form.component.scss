@@ -1,16 +1,16 @@
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: rgba(0,0,0,.25) !important;
-  opacity: 1 !important;
+  color: rgba(0,0,0,.25);
+  opacity: 1;
 }
 input::-moz-placeholder { /* Firefox 19+ */
-  color: rgba(0,0,0,.25) !important;
-  opacity: 1 !important;
+  color: rgba(0,0,0,.25);
+  opacity: 1;
 }
 input:-moz-placeholder { /* Firefox 18- */
-  color: rgba(0,0,0,.25) !important;
-  opacity: 1 !important;
+  color: rgba(0,0,0,.25);
+  opacity: 1;
 }
 input:-ms-input-placeholder { /* IE 10+ */
-  color: rgba(0,0,0,.25) !important;
-  opacity: 1 !important;
+  color: rgba(0,0,0,.25);
+  opacity: 1;
 }
