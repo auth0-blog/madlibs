@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MadlibsService } from './../madlibs.service';
 
 @Component({
@@ -6,11 +6,8 @@ import { MadlibsService } from './../madlibs.service';
   templateUrl: './madlib.component.html',
   styleUrls: ['./madlib.component.scss']
 })
-export class MadlibComponent implements OnInit {
+export class MadlibComponent {
   constructor(public ml: MadlibsService) { }
-
-  ngOnInit() {
-  }
 
   aOrAn(word: string, beginSentence: boolean) {
     const startsWithVowel = ['a', 'e', 'i', 'o', 'u'].indexOf(word.charAt(0).toLowerCase()) !== -1;
