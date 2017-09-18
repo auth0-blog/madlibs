@@ -26,7 +26,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   private _setupProgress() {
     this.progress$ = Observable
       .timer(0, 50)
-      .takeUntil(Observable.timer(2800));
+      .takeUntil(Observable.timer(2850));
   }
 
   private _getPronoun() {
@@ -45,8 +45,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
       .subscribe(
         p => {
           this.progress = p * 2;
-          this.width = this.progress + '%';
-          console.log(p, this.progress);
+          this.width = `${this.progress}%`;
         },
         err => console.warn('Progress error:', err),
         () => this.ml.setMadlibReady(true)
