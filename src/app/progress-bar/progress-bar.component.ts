@@ -36,10 +36,10 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
 
   private _setupSubmit() {
     this.submitSub = this.ml.submit$
-      .subscribe(words => this._startProgress(words));
+      .subscribe(words => this._startProgress());
   }
 
-  private _startProgress(words) {
+  private _startProgress() {
     this._getPronoun();
     this.progressSub = this.progress$
       .subscribe(
@@ -56,8 +56,10 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     if (this.progressSub) {
       this.progressSub.unsubscribe();
     }
+    if (this.pronounSub) {
+      this.pronounSub.unsubscribe();
+    }
     this.submitSub.unsubscribe();
-    this.pronounSub.unsubscribe();
   }
 
 }
