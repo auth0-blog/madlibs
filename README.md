@@ -1,6 +1,6 @@
 # Madlibs
 
-This is the sample repository for the Going In-depth With RxJS, Angular, and Web Speech 2-part tutorials. Begin the tutorials here: [Going In-depth With RxJS, Angular, and Web Speech - Part 1](https://auth0.com/blog/going-in-depth-with-rxjs-angular-web-speech-part-1).
+This is the sample repository for the RxJS Advanced Tutorial With Angular & Web Speech 2-part tutorials. Begin the tutorials here: [RxJS Advanced Tutorial With Angular & Web Speech: Part 1](https://auth0.com/blog/rxjs-advanced-tutorial-with-angular-web-speech-part-1/).
 
 ## Requirements
 
