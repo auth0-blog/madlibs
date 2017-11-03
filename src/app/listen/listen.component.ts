@@ -2,8 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Words } from './../words';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listen',
