@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/zip';
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class MadlibsService {
